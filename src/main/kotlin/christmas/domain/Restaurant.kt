@@ -1,5 +1,6 @@
 package christmas.domain
 
+import christmas.data.Badge
 import christmas.data.Courses
 import christmas.data.Menu
 import christmas.model.OrderMenu
@@ -82,6 +83,21 @@ class Restaurant {
         return sum - saleTotalPrice
     }
 
+    fun getBadge(saleTotalPrice: Int): Badge? {
+        if (saleTotalPrice >= 20000) {
+            return Badge.SANTA
+        }
+
+        if (saleTotalPrice >= 10000) {
+            return Badge.TREE
+        }
+
+        if (saleTotalPrice >= 5000) {
+            return Badge.STAR
+        }
+
+        return null
+    }
 }
 
 private fun checkVisitDay(day: Int) {
