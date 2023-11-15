@@ -37,6 +37,21 @@ class OutputView {
             orderMens.forEach { println("${it.name} ${it.count}개") }
         }
     }
+
+    fun printBenefitDetails(map: Map<String, Int>) {
+        printlnTitle("<혜택 내역>") {
+            if (map.isEmpty()) {
+                println("없음\n")
+                return@printlnTitle
+            }
+
+            map.forEach { (description, price) ->
+                println("$description: ${price.toMoneyFormatString()}")
+            }
+        }
+    }
+
+
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
