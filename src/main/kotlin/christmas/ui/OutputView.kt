@@ -51,7 +51,11 @@ class OutputView {
         }
     }
 
-
+    fun printDiscountAmount(money: Int) {
+        printlnTitle("<총혜택 금액>") {
+            println(money.toMoneyFormatString())
+        }
+    }
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
