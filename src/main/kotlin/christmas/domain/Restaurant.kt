@@ -3,6 +3,9 @@ package christmas.domain
 import christmas.data.Courses
 import christmas.data.Menu
 import christmas.model.OrderMenu
+import christmas.utils.startDays
+import java.time.DayOfWeek
+import java.time.LocalDate
 
 class Restaurant {
 
@@ -44,6 +47,34 @@ class Restaurant {
             list.add(OrderMenu(Menu.샴페인, 1))
         }
         return list
+    }
+
+    fun getBenefitDetails(preSalePrice: Int): Map<String, Int> {
+        val resultMap = mutableMapOf<String, Int>()
+        if (preSalePrice > 10000) {
+            val date = LocalDate.of(2023, 12, visitDay)
+
+            if (date.dayOfWeek == DayOfWeek.FRIDAY || date.dayOfWeek == DayOfWeek.SATURDAY) { // 이건 OCP 원칙을 꺠도 좋을 것 같다
+                val mainCourseCount = orderMenus.count { it.name.courses == Courses.MAIN }
+                val discount = (mainCourseCount * 2023).unaryMinus()
+                resultMap["주말 할인"] = discount
+            } else {
+                val dessertCourseCount = orderMenus.count { it.name.courses == Courses.DESSERT }
+                val discount = (dessertCourseCount * 2023).unaryMinus()
+                resultMap["평일 할인"] = discount
+            }
+
+            resultMap["크리스마스 디데이 할인"] = getChristmasDDaySale(visitDay).unaryMinus()
+
+            if (visitDay in startDays) {
+                resultMap["특별 할인"] = -1000
+            }
+
+            if (preSalePrice >= 120000) {
+                resultMap["증정 이벤트"] = Menu.샴페인.price.unaryMinus()
+            }
+        }
+        return resultMap
     }
 }
 
@@ -89,4 +120,8 @@ private fun checkOnlyDrink(orderMenus: List<OrderMenu>) {
     if (findItem == null) {
         throw IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.")
     }
+}
+
+private fun getChristmasDDaySale(visitDay: Int): Int {
+    return 1000 + (visitDay - 1) * 100
 }
