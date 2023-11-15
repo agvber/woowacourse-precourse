@@ -56,6 +56,13 @@ class OutputView {
             println(money.toMoneyFormatString())
         }
     }
+
+    fun printSalePriceAmount(money: Int) {
+        printlnTitle("<할인 후 예상 결제 금액>") {
+            println(money.toMoneyFormatString())
+        }
+    }
+
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
