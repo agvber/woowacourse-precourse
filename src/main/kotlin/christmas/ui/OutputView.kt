@@ -27,6 +27,16 @@ class OutputView {
             println(money.toMoneyFormatString())
         }
     }
+
+    fun printPresentMenu(orderMens: List<OrderMenu>) {
+        printlnTitle("<증정 메뉴>") {
+            if (orderMens.isEmpty()) {
+                println("없음\n")
+                return@printlnTitle
+            }
+            orderMens.forEach { println("${it.name} ${it.count}개") }
+        }
+    }
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
