@@ -64,4 +64,19 @@ class RestaurantTest {
         )
     }
 
+    @Test
+    fun `뱃지 테스트`() {
+        assertEquals(
+            Badge.STAR,
+            restaurant.getBadge(5000)
+        )
+        assertEquals(
+            Badge.TREE,
+            restaurant.getBadge(10000)
+        )
+        assertEquals(
+            Badge.SANTA,
+            restaurant.getBadge(20000)
+        )
+    }
 }
