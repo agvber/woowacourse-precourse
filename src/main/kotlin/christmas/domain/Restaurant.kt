@@ -38,6 +38,13 @@ class Restaurant {
         return orderMenus.sumOf { (it.name.price) * it.count }
     }
 
+    fun getPresentMenu(preSalePrice: Int): List<OrderMenu> {
+        val list = mutableListOf<OrderMenu>()
+        if (preSalePrice >= 120000) {
+            list.add(OrderMenu(Menu.샴페인, 1))
+        }
+        return list
+    }
 }
 
 private fun checkVisitDay(day: Int) {
