@@ -48,4 +48,20 @@ class RestaurantTest {
         }
     }
 
+    @Test
+    fun `혜택 내역 테스트`() {
+        restaurant.putVisitDay("3")
+        restaurant.putOrderMenus("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1")
+
+        assertEquals(
+            mapOf(
+                "크리스마스 디데이 할인" to -1200,
+                "평일 할인" to -2023,
+                "특별 할인" to -1000,
+                "증정 이벤트" to -25000
+            ),
+            restaurant.getBenefitDetails(restaurant.getPreSalePrice())
+        )
+    }
+
 }
