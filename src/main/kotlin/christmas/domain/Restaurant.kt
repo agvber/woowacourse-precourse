@@ -76,6 +76,12 @@ class Restaurant {
         }
         return resultMap
     }
+
+    fun getSalePrice(saleTotalPrice: Int): Int {
+        val sum = orderMenus.sumOf { (it.name.price) * it.count }
+        return sum - saleTotalPrice
+    }
+
 }
 
 private fun checkVisitDay(day: Int) {
