@@ -21,6 +21,12 @@ class OutputView {
             orderMens.forEach { println("${it.name} ${it.count}개") }
         }
     }
+
+    fun printTotalPrePrice(money: Int) {
+        printlnTitle("<할인 전 총주문 금액>") {
+            println(money.toMoneyFormatString())
+        }
+    }
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
@@ -28,3 +34,5 @@ private fun printlnTitle(title: Any?, content: () -> Unit) {
     content()
     println()
 }
+
+private fun Int.toMoneyFormatString() = "${"%,d".format(this)}원"
