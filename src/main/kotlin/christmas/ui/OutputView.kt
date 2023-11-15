@@ -1,5 +1,7 @@
 package christmas.ui
 
+import christmas.model.OrderMenu
+
 class OutputView {
 
     fun printWelcome() {
@@ -13,4 +15,16 @@ class OutputView {
     fun printEventPreviewTitle(visitDay: Int) {
         println("12월 ${visitDay}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n")
     }
+
+    fun printMenu(orderMens: List<OrderMenu>) {
+        printlnTitle("<주문 메뉴>") {
+            orderMens.forEach { println("${it.name} ${it.count}개") }
+        }
+    }
+}
+
+private fun printlnTitle(title: Any?, content: () -> Unit) {
+    println(title)
+    content()
+    println()
 }
