@@ -1,5 +1,6 @@
 package christmas.ui
 
+import christmas.data.Badge
 import christmas.model.OrderMenu
 
 class OutputView {
@@ -63,6 +64,11 @@ class OutputView {
         }
     }
 
+    fun printEventBadge(badge: Badge?) {
+        printlnTitle("<12월 이벤트 배지>") {
+            println(badge?.string ?: "없음")
+        }
+    }
 }
 
 private fun printlnTitle(title: Any?, content: () -> Unit) {
