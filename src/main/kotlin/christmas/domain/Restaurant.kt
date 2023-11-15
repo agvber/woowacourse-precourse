@@ -34,6 +34,10 @@ class Restaurant {
         }
     }
 
+    fun getPreSalePrice(): Int {
+        return orderMenus.sumOf { (it.name.price) * it.count }
+    }
+
 }
 
 private fun checkVisitDay(day: Int) {
