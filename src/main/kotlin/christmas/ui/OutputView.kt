@@ -6,5 +6,7 @@ class OutputView {
         println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.")
     }
 
-
+    fun printErrorLog(t: Throwable) {
+        println(t.message ?: "[ERROR] 알 수 없는 에러가 발생 하였습니다.")
+    }
 }
